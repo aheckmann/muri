@@ -154,4 +154,9 @@ describe('muri', function(){
     assert.equal(50, val.options.wtimeoutMS);
     done();
   })
+
+  it('has a version', function(done){
+    assert.ok(muri.version);
+    done();
+  })
 })
