@@ -6,7 +6,7 @@
   "scripts": {
     "test": "make test"
   },
-  "repository": "",
+  "repository": "git://github.com/aheckmann/muri.git",
   "keywords": [
     "mongodb",
     "uri",
