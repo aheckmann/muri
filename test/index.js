@@ -134,6 +134,47 @@ describe('muri', function(){
     })
   })
 
+
+
+  describe('unix domain sockets', function(){
+    it('without auth', function(done){
+      var val = muri('mongodb:///tmp/mongodb-27017.sock?safe=false');
+      assert.equal(val.db, 'admin')
+      assert.ok(Array.isArray(val.hosts));
+      assert.equal(1, val.hosts.length);
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].host, undefined);
+      assert.equal(val.hosts[0].port, undefined);
+      assert.equal(false, val.options.safe);
+      done();
+    })
+    it('with auth', function(done){
+      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock?safe=false');
+      assert.equal(val.db, 'admin')
+      assert.ok(Array.isArray(val.hosts));
+      assert.equal(1, val.hosts.length);
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].host, undefined);
+      assert.equal(val.hosts[0].port, undefined);
+      assert.equal(false, val.options.safe);
+      done();
+    })
+    it('with auth', function(done){
+      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock?safe=false');
+      assert.equal(val.db, 'admin')
+      assert.ok(Array.isArray(val.hosts));
+      assert.equal(2, val.hosts.length);
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].host, undefined);
+      assert.equal(val.hosts[0].port, undefined);
+      assert.equal(val.hosts[1].ipc, '/tmp/another-27018')
+      assert.equal(val.hosts[1].host, undefined);
+      assert.equal(val.hosts[1].port, undefined);
+      assert.equal(false, val.options.safe);
+      done();
+    })
+  })
+
   it('all together now', function(done){
     var uri = 'mongodb://user:pass@local,remote:27018,japan:27019/neatdb'
     uri +=    '?replicaSet=myreplset&journal=true&w=2&wtimeoutMS=50'
