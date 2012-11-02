@@ -134,7 +134,53 @@ describe('muri', function(){
     })
   })
 
-
+  describe('readPref tags', function(){
+    describe('with & ', function(){
+      it('mongodb://localhost/?readPreferenceTags=dc:ny', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny');
+        assert.equal('admin', val.db);
+        assert.deepEqual([{ dc: 'ny' }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:sf,rack:2', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:sf,rack:2');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'sf', rack: 2 }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/db?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:sf,rack:2&readPreferenceTags=', function(done){
+        var val = muri('mongodb://localhost/db?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:sf,rack:2&readPreferenceTags=');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'sf', rack: 2 }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:ny&readPreferenceTags=', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1&readPreferenceTags=dc:ny&readPreferenceTags=');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'ny' }], val.options.readPreferenceTags);
+        done();
+      })
+    })
+    describe('with ; ', function(){
+      it('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:sf,rack:2', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:sf,rack:2');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'sf', rack: 2 }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/db?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:sf,rack:2;readPreferenceTags=', function(done){
+        var val = muri('mongodb://localhost/db?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:sf,rack:2;readPreferenceTags=');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'sf', rack: 2 }], val.options.readPreferenceTags);
+        done();
+      })
+      it('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:ny;readPreferenceTags=', function(done){
+        var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny,rack:1;readPreferenceTags=dc:ny;readPreferenceTags=');
+        assert.deepEqual([{ dc: 'ny', rack: 1 }, { dc: 'ny' }], val.options.readPreferenceTags);
+        done();
+      })
+    })
+  })
 
   describe('unix domain sockets', function(){
     it('without auth', function(done){
