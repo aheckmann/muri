@@ -205,7 +205,7 @@ describe('muri', function(){
       assert.equal(false, val.options.safe);
       done();
     })
-    it('with auth', function(done){
+    it('with auth + repl sets', function(done){
       var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock?safe=false');
       assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
