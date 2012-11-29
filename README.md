@@ -9,7 +9,7 @@ Muri is your friendly neighborhood [MongoDB URI](http://www.mongodb.org/display/
 
 ###Use
 
-```
+```js
  var muri = require('muri');
  var o = muri('mongodb://user:pass@local,remote:27018,japan:27019/neatdb?replicaSet=myreplset&journal=true&w=2&wtimeoutMS=50');
 
