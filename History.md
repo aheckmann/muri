@@ -1,4 +1,10 @@
 
+0.0.3 / 2012-11-29
+==================
+
+  * validate mongodb:///db
+  * more detailed error message
+
 0.0.2 / 2012-11-02
 ==================
 
