@@ -37,6 +37,9 @@ describe('muri', function(){
         muri('mongodb://');
       }, /Missing host/)
       assert.throws(function () {
+        muri('mongodb:///fake');
+      }, /Missing host/)
+      assert.throws(function () {
         muri('mongodb://?yep');
       }, /Missing host/)
       assert.throws(function () {
