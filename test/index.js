@@ -116,6 +116,12 @@ describe('muri', function(){
       assert.equal('muri', val.db);
       done();
     })
+    it('works with multiple specified protocols', function(done){
+      var uri = 'mongodb://localhost:27020/testing,mongodb://localhost:27019,mongodb://localhost:27018'
+      var val = muri(uri);
+      assert.equal('testing', val.db);
+      done();
+    })
   })
 
   describe('querystring separator', function(){
