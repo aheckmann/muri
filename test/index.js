@@ -197,7 +197,7 @@ describe('muri', function(){
       assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
       assert.equal(false, val.options.safe);
@@ -208,7 +208,7 @@ describe('muri', function(){
       assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
       assert.equal(false, val.options.safe);
@@ -219,7 +219,7 @@ describe('muri', function(){
       assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
       assert.equal(false, val.options.safe);
@@ -230,7 +230,7 @@ describe('muri', function(){
       assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
       assert.equal(false, val.options.safe);
@@ -241,10 +241,10 @@ describe('muri', function(){
       assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(2, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
-      assert.equal(val.hosts[1].ipc, '/tmp/another-27018')
+      assert.equal(val.hosts[1].ipc, '/tmp/another-27018.sock')
       assert.equal(val.hosts[1].host, undefined);
       assert.equal(val.hosts[1].port, undefined);
       assert.equal(false, val.options.safe);
@@ -255,10 +255,10 @@ describe('muri', function(){
       assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(2, val.hosts.length);
-      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017')
+      assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
       assert.equal(val.hosts[0].host, undefined);
       assert.equal(val.hosts[0].port, undefined);
-      assert.equal(val.hosts[1].ipc, '/tmp/another-27018')
+      assert.equal(val.hosts[1].ipc, '/tmp/another-27018.sock')
       assert.equal(val.hosts[1].host, undefined);
       assert.equal(val.hosts[1].port, undefined);
       assert.equal(false, val.options.safe);
