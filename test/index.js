@@ -104,11 +104,11 @@ describe('muri', function(){
   })
 
   describe('database', function(){
-    it('defaults to admin', function(done){
+    it('default', function(done){
       var val = muri('mongodb://localhost/');
-      assert.equal('admin', val.db);
+      assert.equal('test', val.db);
       var val = muri('mongodb://localhost');
-      assert.equal('admin', val.db);
+      assert.equal('test', val.db);
       done();
     })
     it('is overridable', function(done){
@@ -147,7 +147,7 @@ describe('muri', function(){
     describe('with & ', function(){
       it('mongodb://localhost/?readPreferenceTags=dc:ny', function(done){
         var val = muri('mongodb://localhost/?readPreferenceTags=dc:ny');
-        assert.equal('admin', val.db);
+        assert.equal('test', val.db);
         assert.deepEqual([{ dc: 'ny' }], val.options.readPreferenceTags);
         done();
       })
@@ -194,7 +194,7 @@ describe('muri', function(){
   describe('unix domain sockets', function(){
     it('without auth', function(done){
       var val = muri('mongodb:///tmp/mongodb-27017.sock?safe=false');
-      assert.equal(val.db, 'admin')
+      assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -216,7 +216,7 @@ describe('muri', function(){
     })
     it('with auth', function(done){
       var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock?safe=false');
-      assert.equal(val.db, 'admin')
+      assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -238,7 +238,7 @@ describe('muri', function(){
     })
     it('with auth + repl sets', function(done){
       var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock?safe=false');
-      assert.equal(val.db, 'admin')
+      assert.equal(val.db, 'test')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(2, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
