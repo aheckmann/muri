@@ -204,8 +204,8 @@ describe('muri', function(){
       done();
     })
     it('without auth with a database name', function(done){
-      var val = muri('mongodb:///tmp/mongodb-27017.sock/test?safe=false');
-      assert.equal(val.db, 'test')
+      var val = muri('mongodb:///tmp/mongodb-27017.sock/tester?safe=false');
+      assert.equal(val.db, 'tester')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -216,7 +216,7 @@ describe('muri', function(){
     })
     it('with auth', function(done){
       var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock?safe=false');
-      assert.equal(val.db, 'test')
+      assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -226,8 +226,8 @@ describe('muri', function(){
       done();
     })
     it('with auth with a db name', function(done){
-      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock/test?safe=false');
-      assert.equal(val.db, 'test')
+      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock/tester?safe=false');
+      assert.equal(val.db, 'tester')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(1, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -238,7 +238,7 @@ describe('muri', function(){
     })
     it('with auth + repl sets', function(done){
       var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock?safe=false');
-      assert.equal(val.db, 'test')
+      assert.equal(val.db, 'admin')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(2, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
@@ -251,8 +251,8 @@ describe('muri', function(){
       done();
     })
     it('with auth + repl sets with a db name', function(done){
-      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock/test?safe=false');
-      assert.equal(val.db, 'test')
+      var val = muri('mongodb://user:password@/tmp/mongodb-27017.sock,/tmp/another-27018.sock/tester?safe=false');
+      assert.equal(val.db, 'tester')
       assert.ok(Array.isArray(val.hosts));
       assert.equal(2, val.hosts.length);
       assert.equal(val.hosts[0].ipc, '/tmp/mongodb-27017.sock')
