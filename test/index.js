@@ -29,6 +29,24 @@ describe('muri', function(){
       assert.equal('password', val.auth.pass);
       done();
     })
+
+    it('handles # in the username', function(done){
+      var uri = 'mongodb://us#er:password@local:27017';
+      var val = muri(uri);
+      assert.ok(val.auth);
+      assert.equal('us#er', val.auth.user);
+      assert.equal('password', val.auth.pass);
+      done();
+    })
+
+    it('handles # in the password', function(done){
+      var uri = 'mongodb://user:pa#ssword@local:27017';
+      var val = muri(uri);
+      assert.ok(val.auth);
+      assert.equal('user', val.auth.user);
+      assert.equal('pa#ssword', val.auth.pass);
+      done();
+    })
   })
 
   describe('host', function(){
@@ -267,12 +285,12 @@ describe('muri', function(){
   })
 
   it('all together now', function(done){
-    var uri = 'mongodb://user:pass@local,remote:27018,japan:27019/neatdb'
+    var uri = 'mongodb://u#ser:pas#s@local,remote:27018,japan:27019/neatdb'
     uri +=    '?replicaSet=myreplset&journal=true&w=2&wtimeoutMS=50'
     var val = muri(uri);
 
-    assert.equal('user', val.auth.user);
-    assert.equal('pass', val.auth.pass);
+    assert.equal('u#ser', val.auth.user);
+    assert.equal('pas#s', val.auth.pass);
     assert.equal('neatdb', val.db);
     assert.equal(3, val.hosts.length);
     assert.equal('local', val.hosts[0].host);
