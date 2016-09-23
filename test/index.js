@@ -318,4 +318,11 @@ describe('muri', function(){
     assert.ok(muri.version);
     done();
   })
+
+  it('replica set name with a leading number', function(done){
+    var uri = 'mongodb://localhost:27017/test?replicaSet=1800-shard-0';
+    var val = muri(uri);
+    assert.equal('1800-shard-0', val.options.replicaSet);
+    done()
+  })
 })
