@@ -1,3 +1,7 @@
+1.1.1 / 2016-09-26
+==================
+ * fixed; handle parsing of replicaSet with leading number #8
+
 1.1.0 / 2015-04-13
 ==================
  * added; parse ipv6 addresses
