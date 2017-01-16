@@ -1,3 +1,7 @@
+1.2.0 / 2016-01-16
+==================
+ * fix: call decodeURIComponent on username and password #9
+
 1.1.1 / 2016-09-26
 ==================
  * fixed; handle parsing of replicaSet with leading number #8
