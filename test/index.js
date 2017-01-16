@@ -323,6 +323,15 @@ describe('muri', function(){
     var uri = 'mongodb://localhost:27017/test?replicaSet=1800-shard-0';
     var val = muri(uri);
     assert.equal('1800-shard-0', val.options.replicaSet);
-    done()
-  })
+    done();
+  });
+
+  it('parses x509-style uris', function(done) {
+    var userName = 'CN=client,OU=kerneluser,O=10Gen,L=New York City,ST=New York,C=US';
+    var uri = 'mongodb://' + encodeURIComponent(userName) + '@server:27017/test?authMechanism=%s&ssl=true';
+    var val = muri(uri);
+    assert.equal(val.auth.user, userName);
+    assert.equal(val.auth.pass, void 0);
+    done();
+  });
 })
