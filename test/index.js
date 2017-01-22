@@ -49,6 +49,17 @@ describe('muri', function(){
     })
   })
 
+  describe('user@', function(done){
+    it('works', function(done){
+      var uri = 'mongodb://username@local:27017/test?a=b';
+      var val = muri(uri);
+      assert.ok(val.auth);
+      assert.equal(val.auth.user, 'username');
+      assert.ok(!val.auth.pass);
+      done();
+    })
+  })
+
   describe('host', function(){
     it('must be specified', function(done){
       assert.throws(function () {
