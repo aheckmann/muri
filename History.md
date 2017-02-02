@@ -1,3 +1,7 @@
+1.2.1 / 2016-02-01
+==================
+ * fix: only call decodeURIComponent once so you can encode % #11 [sal89](https://github.com/sal89)
+
 1.2.0 / 2016-01-16
 ==================
  * fix: call decodeURIComponent on username and password #9
