@@ -30,6 +30,15 @@ describe('muri', function(){
       done();
     })
 
+    it('parses properly with @ in password', function(done){
+      var uri = 'mongodb://user:pass@word@local:27017';
+      var val = muri(uri);
+      assert.ok(val.auth);
+      assert.equal('user', val.auth.user);
+      assert.equal('pass@word', val.auth.pass);
+      done();
+    })
+
     it('handles # in the username', function(done){
       var uri = 'mongodb://us#er:password@local:27017';
       var val = muri(uri);
