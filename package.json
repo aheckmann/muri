@@ -3,6 +3,7 @@
   "version": "1.3.0",
   "description": "MongoDB URI parser",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "make test"
   },
