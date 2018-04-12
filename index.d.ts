@@ -9,7 +9,7 @@ declare namespace Muri {
     interface ParsedUri {
         db: string;
         hosts: Host[];
-        auth?: {user: string; pass: string;};
+        auth?: {user: string; pass?: string;};
         options?: any;
     }
 
