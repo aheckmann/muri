@@ -1,4 +1,8 @@
-# Meet Muri!
+# DEPRECATED
+
+This package has been replaced by the [official mongodb package](https://github.com/mongodb-js/mongodb-connection-string-url). New contributions are not being accepted.
+
+## Meet Muri!
 
 Muri is your friendly neighborhood [MongoDB URI](http://www.mongodb.org/display/DOCS/Connections) parser for Node.js.
 
